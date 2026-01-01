@@ -65,7 +65,7 @@ def show(a, signal_buy=signal_buy, signal_sell=signal_sell):
     sell = sell.sort_values('Sell_Date')
 
     p = pair(a, buy, sell)
-    p.drop([a+'_x',a+'_y'],inplace=True)
+    p.drop(columns=[f"{a}_x", f"{a}_y"], inplace=True, errors="ignore")
     p['Return%'] = ((p['Sell_Price'] - p['Buy_Price']) / p['Buy_Price']) * 100
 
     st.dataframe(p)
